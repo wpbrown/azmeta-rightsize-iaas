@@ -5,13 +5,13 @@ import pandas as pd
 from typing import Any, Optional, List, TYPE_CHECKING, NamedTuple, Callable, Dict, Set
 import dagster_pandas
 import functools
-from azuremeta.access.monitor_logs import (
+from azmeta.access.monitor_logs import (
     PerformanceCounterSpec,
     query_dataframe_by_workspace_chunk, 
     build_perf_counter_percentile_query,
     build_disk_percentile_query
 )
-from azuremeta.access.utils.chunking import build_grouped_chunk_list
+from azmeta.access.utils.chunking import build_grouped_chunk_list
 from .resources import ResourcesDataFrame
 from .specifications import AzureComputeSpecifications
 
@@ -113,7 +113,7 @@ def normalize_disk_utilization(context: SolidExecutionContext, utilization: Util
     yield Output(unioned)
 
 
-def _disk_is_cached(name: str, storage_profile: Dict, all_names: Set[str]) -> bool:
+def _disk_is_cached(name: str, storage_profile: Dict, all_names: Set[str]) -> Optional[bool]:
     if name == 'D':
         return True
 

@@ -1,6 +1,6 @@
 from dagster import solid, SolidExecutionContext, Field, Array, String, PythonObjectDagsterType, make_python_type_usable_as_dagster_type
 from typing import Any, Optional, List, TYPE_CHECKING
-from azuremeta.access.specifications import AzureComputeSpecifications, load_compute_specifications
+from azmeta.access.specifications import AzureComputeSpecifications, load_compute_specifications
 
 
 AzureComputeSpecificationsDagsterType = PythonObjectDagsterType(AzureComputeSpecifications)

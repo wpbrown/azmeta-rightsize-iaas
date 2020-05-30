@@ -2,8 +2,7 @@ from dagster import solid, SolidExecutionContext, Field, Array, String
 from dagster_pandas import PandasColumn, create_dagster_pandas_dataframe_type
 from pandas import DataFrame
 from typing import Any, Optional, List, TYPE_CHECKING
-from azuremeta.access.resource_graph import query_dataframe
-
+from azmeta.access.resource_graph import query_dataframe
 
 if TYPE_CHECKING:
     ResourcesDataFrame = Any # DataFrame # Pandas has no type info yet.
@@ -31,5 +30,5 @@ def query_vm_resources(context: SolidExecutionContext) -> ResourcesDataFrame:
 
     dataframe_result = query_dataframe(config['subscriptions'], query)
     
-    return dataframe_result.primary_result
+    return dataframe_result
 

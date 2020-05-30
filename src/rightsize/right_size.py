@@ -1,17 +1,17 @@
-from typing import NamedTuple, Dict, List, Set
+from typing import NamedTuple, Dict, List, Set, Optional
 from itertools import groupby
 from dagster import solid, SolidExecutionContext, InputDefinition, usable_as_dagster_type
 from pandas import DataFrame, Series
-from azuremeta.access.specifications import AzureComputeSpecifications, VirtualMachineSku
+from azmeta.access.specifications import AzureComputeSpecifications, VirtualMachineSku
 from .utilization import UtilizationDataFrame
 from .resources import ResourcesDataFrame
 import functools
 
 @usable_as_dagster_type
 class RightSizeAnalysis(NamedTuple):
-    advisor_sku: str = None
-    advisor_sku_valid: bool = None
-    advisor_sku_invalid_reason: str = None
+    advisor_sku: str
+    advisor_sku_valid: bool
+    advisor_sku_invalid_reason: Optional[str] = None
     pass
 
 
@@ -33,7 +33,7 @@ def right_size_engine(context: SolidExecutionContext,
     cpu_utilization = cpu_utilization.set_index('resource_id')
     mem_utilization = mem_utilization.set_index('resource_id')
     disk_utilization = disk_utilization.set_index('resource_id').sort_index()
-    results: Dict[RightSizeAnalysis] = {}
+    results: Dict[str, RightSizeAnalysis] = {}
     for resource in resources.itertuples():
         resource_id = resource.resource_id
         advisor_sku = advisor_recommendations.get(resource_id)

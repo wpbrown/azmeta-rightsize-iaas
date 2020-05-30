@@ -1,15 +1,15 @@
 from dagster import pipeline, ModeDefinition
-from rightsize.resources import query_vm_resources
-from rightsize.utilization import (
+from .resources import query_vm_resources
+from .utilization import (
     query_cpu_utilization, normalize_cpu_utilization,
     query_mem_utilization, normalize_mem_utilization,
     query_disk_utilization, normalize_disk_utilization,
     default_azure_monitor_context
 )
-from rightsize.specifications import load_compute_specs
-from rightsize.recommended import get_recommendations
-from rightsize.right_size import right_size_engine
-from rightsize.output import write_operation_inventory, right_size_report, write_html_report
+from .specifications import load_compute_specs
+from .recommended import get_recommendations
+from .right_size import right_size_engine
+from .output import write_operation_inventory, right_size_report, write_html_report
 
 @pipeline(
     mode_defs=[ModeDefinition(

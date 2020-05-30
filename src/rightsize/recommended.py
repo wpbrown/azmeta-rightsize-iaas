@@ -1,6 +1,6 @@
 from typing import Dict
 from dagster import solid, SolidExecutionContext, Field, Array, String
-from azuremeta.access.advisor import load_resize_recommendations
+from azmeta.access.advisor import load_resize_recommendations
 
 
 @solid(config={
