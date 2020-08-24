@@ -8,7 +8,7 @@ from .utilization import (
 )
 from .specifications import load_compute_specs
 from .recommended import get_recommendations
-from .right_size import right_size_engine
+from .right_size import right_size_engine, advisor_validator
 from .output import write_operation_inventory, right_size_report, write_html_report
 
 @pipeline(
@@ -28,10 +28,13 @@ def rightsize_pipeline():
     disk_utilization = normalize_disk_utilization(utilization=disk_utilization, compute_specs=compute_specs, resources=vm_resources)
 
     recommendations = get_recommendations()
-    right_size_analysis = right_size_engine(cpu_utilization=cpu_utilization, mem_utilization=mem_utilization, disk_utilization=disk_utilization, 
-                                            compute_specs=compute_specs, advisor_recommendations=recommendations, resources=vm_resources)
+    right_size_advisor_analysis = advisor_validator(cpu_utilization=cpu_utilization, mem_utilization=mem_utilization, disk_utilization=disk_utilization, 
+                                                    compute_specs=compute_specs, advisor_recommendations=recommendations, resources=vm_resources)
+    right_size_local_analysis = right_size_engine(cpu_utilization=cpu_utilization, mem_utilization=mem_utilization, disk_utilization=disk_utilization, 
+                                                  compute_specs=compute_specs, resources=vm_resources)                                            
     
-    write_operation_inventory(analysis=right_size_analysis, resources=vm_resources)
-    report_notebook = right_size_report(analysis=right_size_analysis, resources=vm_resources, compute_specs=compute_specs,
-                                        cpu_utilization=cpu_utilization, mem_utilization=mem_utilization, disk_utilization=disk_utilization)
+    write_operation_inventory(analysis=right_size_local_analysis, resources=vm_resources)
+    report_notebook = right_size_report(advisor_analysis=right_size_advisor_analysis, local_analysis=right_size_local_analysis, resources=vm_resources, 
+                                        compute_specs=compute_specs, cpu_utilization=cpu_utilization, mem_utilization=mem_utilization, 
+                                        disk_utilization=disk_utilization)
     write_html_report(report_notebook=report_notebook)

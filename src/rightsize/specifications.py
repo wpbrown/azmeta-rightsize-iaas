@@ -11,5 +11,5 @@ make_python_type_usable_as_dagster_type(AzureComputeSpecifications, AzureCompute
     'subscription': Field(String, is_required=False, description='The subscription ID to list SKUs from.')
 })
 def load_compute_specs(context: SolidExecutionContext) -> AzureComputeSpecifications:
-    return load_compute_specifications()
+    return load_compute_specifications(logger=context.log)
 

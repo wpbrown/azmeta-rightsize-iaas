@@ -43,7 +43,8 @@ def write_operation_inventory(context: SolidExecutionContext,
 right_size_report = dm.define_dagstermill_solid(
     'right_size_report', script_relative_path('rightsizereport.ipynb'),
     input_defs=[
-        InputDefinition('analysis', Dict[str, RightSizeAnalysis]),
+        InputDefinition('advisor_analysis', Dict[str, RightSizeAnalysis]),
+        InputDefinition('local_analysis', Dict[str, RightSizeAnalysis]),
         InputDefinition('cpu_utilization', UtilizationDataFrame),
         InputDefinition('mem_utilization', UtilizationDataFrame),
         InputDefinition('disk_utilization', UtilizationDataFrame),
