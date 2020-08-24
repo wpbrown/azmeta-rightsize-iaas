@@ -16,7 +16,7 @@ else:
     ) 
 
 
-@solid(config={
+@solid(config_schema={
     'subscriptions': Field(Array(String), description='The subscriptions to query in the Resource Graph.'),
     'filters': Field(String, is_required=False, description='Conditions for a KQL where operator.'),
     'custom_projections': Field(String, is_required=False, description='Assignments for a KQL project operator.'),

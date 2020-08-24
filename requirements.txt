@@ -15,21 +15,19 @@ click==7.1.2              # via dagster, papermill
 coloredlogs==14.0         # via dagster
 contextlib2==0.6.0.post1  # via dagster
 cycler==0.10.0            # via matplotlib
-dagster-pandas==0.7.14    # via -r requirements.in
-dagster==0.7.14           # via -r requirements.in, dagster-pandas, dagstermill
-dagstermill==0.7.14       # via -r requirements.in
+dagster-pandas==0.9.3     # via -r requirements.in
+dagster==0.9.3            # via -r requirements.in, dagster-pandas, dagstermill
+dagstermill==0.9.3        # via -r requirements.in
 decorator==4.4.2          # via ipython, traitlets
 defusedxml==0.6.0         # via nbconvert
+docstring-parser==0.7.1   # via dagster
 entrypoints==0.3          # via nbconvert, papermill
 et-xmlfile==1.0.1         # via openpyxl
 funcsigs==1.0.2           # via dagster
 future==0.18.2            # via dagster, papermill
-gevent==20.5.1            # via dagster
-graphviz==0.14            # via dagster
-greenlet==0.4.15          # via gevent
+grpcio==1.30.0            # via dagster
 humanfriendly==8.2        # via coloredlogs
 idna==2.9                 # via requests
-importlib-metadata==1.6.0  # via jsonschema
 ipykernel==5.3.0          # via dagstermill
 ipython-genutils==0.2.0   # via nbformat, traitlets
 ipython==7.14.0           # via ipykernel, nteract-scrapbook
@@ -58,6 +56,7 @@ pathtools==0.1.2          # via watchdog
 pexpect==4.8.0            # via ipython
 pickleshare==0.7.5        # via ipython
 prompt-toolkit==3.0.5     # via ipython
+protobuf==3.12.4          # via dagster
 ptyprocess==0.6.0         # via pexpect
 pyarrow==0.17.1           # via nteract-scrapbook
 pygments==2.6.1           # via ipython, nbconvert
@@ -70,7 +69,7 @@ pyyaml==5.3.1             # via dagster, papermill
 pyzmq==19.0.1             # via jupyter-client
 requests==2.23.0          # via dagster, papermill
 rx==1.6.1                 # via dagster
-six==1.15.0               # via bleach, cycler, dagster, dagstermill, jsonschema, packaging, papermill, pyrsistent, python-dateutil, tenacity, traitlets
+six==1.15.0               # via bleach, cycler, dagster, dagstermill, grpcio, jsonschema, packaging, papermill, protobuf, pyrsistent, python-dateutil, tenacity, traitlets
 sqlalchemy==1.3.17        # via alembic, dagster
 tenacity==6.2.0           # via papermill
 testpath==0.4.4           # via nbconvert
@@ -83,9 +82,6 @@ urllib3==1.25.9           # via requests
 watchdog==0.10.2          # via dagster
 wcwidth==0.1.9            # via prompt-toolkit
 webencodings==0.5.1       # via bleach
-zipp==3.1.0               # via importlib-metadata
-zope.event==4.4           # via gevent
-zope.interface==5.1.0     # via gevent
 
 # The following packages are considered to be unsafe in a requirements file:
 # setuptools

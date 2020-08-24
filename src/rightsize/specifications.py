@@ -7,7 +7,7 @@ AzureComputeSpecificationsDagsterType = PythonObjectDagsterType(AzureComputeSpec
 make_python_type_usable_as_dagster_type(AzureComputeSpecifications, AzureComputeSpecificationsDagsterType)
 
 
-@solid(config={
+@solid(config_schema={
     'subscription': Field(String, is_required=False, description='The subscription ID to list SKUs from.')
 })
 def load_compute_specs(context: SolidExecutionContext) -> AzureComputeSpecifications:

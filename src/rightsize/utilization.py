@@ -154,7 +154,7 @@ class AzureMonitorContext(object):
         return self._workspace_map[subscription_id]
 
 
-@resource(config={
+@resource(config_schema={
     'lookback_duration': Field(String, default_value='P30D', is_required=False),
     'workspace_map': Field(Permissive(), is_required=False),
     'workspace': Field(String, is_required=False)
